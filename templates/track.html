@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block body %}<h1>Track Your Spare Part Order</h1>
+{% if not o %}<div class="card"><form method="post" class="row"><input name="oid" placeholder="Order number" required><input name="phone" placeholder="Registered phone" required><button>Track</button></form></div>
+{% else %}{% set idx = statuses.index(o.status) %}<div class="card"><h2>Order #{{o.id}}</h2><div class="tl">{% for s in statuses %}<div class="{{ 'on' if loop.index0<=idx }}">{{ s.replace('_',' ').title() }}</div>{% endfor %}</div>
+<table><tr><th>Placed</th><td>{{o.created_at}}</td></tr><tr><th>Packed</th><td>{{o.packed_at or '-'}}</td></tr><tr><th>Out for delivery</th><td>{{o.out_at or '-'}}</td></tr><tr><th>Delivered</th><td>{{o.delivered_at or '-'}}</td></tr>
+{% if o.rname and o.status=='OUT_FOR_DELIVERY' %}<tr><th>Rider</th><td>{{o.rname}} · {{o.rphone}}</td></tr>{% endif %}<tr><th>Amount to pay</th><td>₹{{ '%.0f'|format(o.total) }}</td></tr></table>
+{% if o.status!='DELIVERED' %}<p>Share the delivery OTP with the rider only when you receive your parts.</p>{% endif %}</div>{% endif %}{% endblock %}

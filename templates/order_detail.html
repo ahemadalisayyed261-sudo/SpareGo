@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block body %}<h1>Order #{{o.id}} — {{o.status.replace('_',' ')}}</h1>
+<div class="card noprint"><div class="row">
+{% if o.status=='PLACED' %}<form method="post" action="/order/{{o.id}}/advance"><button>📦 Mark Packed</button></form>
+{% elif o.status=='PACKED' %}<form method="post" action="/order/{{o.id}}/advance" class="row"><select name="rider_id" required><option value="">— Assign rider —</option>{% for r in riders %}<option value="{{r.id}}">{{r.name}}</option>{% endfor %}</select><button>🏍 Out for Delivery</button></form>
+{% elif o.status=='OUT_FOR_DELIVERY' %}<form method="post" action="/order/{{o.id}}/advance" class="row"><input name="otp" placeholder="Customer's delivery OTP" required><button>✅ Confirm Delivery</button></form>{% endif %}
+<a class="btn wa right" target="_blank" href="{{wa}}">📲 Send Tracking on WhatsApp</a><button class="sec" onclick="window.print()">🖨 Print Invoice</button></div></div>
+<div class="card"><h2>Invoice — {{shop}}</h2><p><b>{{o.cname}}</b> · {{o.cphone}}<br>Deliver to: {{o.address}}<br>Rider: {{o.rname or 'not assigned'}} · Placed: {{o.created_at}}{% if o.status!='DELIVERED' %} · Delivery OTP (give only to customer): <b>{{o.otp}}</b>{% endif %}</p>
+<table><tr><th>Part</th><th>Qty</th><th>Price</th><th>Amount</th></tr>{% for i in items %}<tr><td>{{i.pname}}</td><td>{{i.qty}}</td><td>₹{{ '%.0f'|format(i.price) }}</td><td>₹{{ '%.0f'|format(i.price*i.qty) }}</td></tr>{% endfor %}
+<tr><td colspan="3">Delivery fee</td><td>₹{{ '%.0f'|format(o.delivery_fee) }}</td></tr><tr><th colspan="3">Total</th><th>₹{{ '%.0f'|format(o.total) }}</th></tr></table><p class="noprint" style="font-size:13px;color:var(--mut)">Public tracking link: {{link}}</p></div>{% endblock %}

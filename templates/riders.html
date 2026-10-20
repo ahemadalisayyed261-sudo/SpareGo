@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% block body %}<h1>Delivery Riders</h1><div class="card"><form method="post" class="row"><input name="name" placeholder="Rider name" required><input name="phone" placeholder="Phone"><button>Add Rider</button></form></div>
+<div class="card"><table><tr><th>Rider</th><th>Phone</th><th>Currently Delivering</th><th>Completed</th></tr>{% for r in rows %}<tr><td>{{r.name}}</td><td>{{r.phone}}</td><td>{{r.busy}}</td><td>{{r.done}}</td></tr>{% endfor %}</table></div>{% endblock %}

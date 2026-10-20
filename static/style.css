@@ -1,0 +1,18 @@
+:root{--g:#0f766e;--g2:#14b8a6;--bg:#f1f5f9;--card:#fff;--tx:#0f172a;--mut:#64748b;--red:#dc2626;--amb:#d97706;--ok:#16a34a}
+*{box-sizing:border-box}body{margin:0;font-family:Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--tx)}
+nav{background:linear-gradient(90deg,var(--g),var(--g2));color:#fff;display:flex;gap:6px;align-items:center;padding:10px 18px;flex-wrap:wrap}
+nav b{font-size:20px;margin-right:18px}nav a{color:#fff;text-decoration:none;padding:6px 12px;border-radius:8px;font-size:14px}nav a:hover{background:#ffffff33}
+main{max-width:1100px;margin:20px auto;padding:0 14px}h1{font-size:22px;margin:0 0 14px}h2{font-size:16px;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:16px}
+.card{background:var(--card);border-radius:14px;padding:16px;box-shadow:0 1px 4px #0001;margin-bottom:16px}
+.stat small{color:var(--mut)}.stat div{font-size:26px;font-weight:700;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:8px;text-align:left;border-bottom:1px solid #e2e8f0}th{color:var(--mut);font-weight:600}
+input,select{padding:8px;border:1px solid #cbd5e1;border-radius:8px;font-size:14px;margin:3px 0}
+button,.btn{background:var(--g);color:#fff;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;text-decoration:none;font-size:14px;display:inline-block}
+.btn.wa{background:#25d366}.btn.sec,button.sec{background:#475569}
+.badge{padding:2px 9px;border-radius:99px;font-size:12px;font-weight:600;color:#fff}.Good,.ok{background:var(--ok)}.Average,.warn{background:var(--amb)}.Risky,.bad{background:var(--red)}
+.flash{padding:10px 14px;border-radius:10px;margin-bottom:12px;color:#fff}.flash.ok{background:var(--ok)}.flash.err{background:var(--red)}
+.bar{display:flex;align-items:flex-end;gap:12px;height:160px;padding-top:10px}.bar div{flex:1;background:var(--g2);border-radius:6px 6px 0 0;position:relative;min-height:3px}
+.bar span{position:absolute;top:-18px;font-size:11px;left:0;right:0;text-align:center}.bar em{position:absolute;bottom:-20px;font-size:11px;left:0;right:0;text-align:center;font-style:normal;color:var(--mut)}
+.login{max-width:340px;margin:12vh auto}.row{display:flex;gap:8px;flex-wrap:wrap}.right{margin-left:auto}
+@media print{nav,.noprint,form{display:none!important}body{background:#fff}.card{box-shadow:none}}

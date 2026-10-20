@@ -1,0 +1,5 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SpareGo</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"><style>.tl{display:flex;gap:6px;margin:14px 0}.tl div{flex:1;text-align:center;padding:10px 4px;border-radius:10px;background:#e2e8f0;font-size:13px}.tl .on{background:var(--g);color:#fff;font-weight:700}</style></head><body>
+{% if session.uid %}<nav><b>🔧 SpareGo</b><a href="/">Dashboard</a><a href="/order/new">New Order</a><a href="/orders">Orders</a><a href="/parts">Parts</a><a href="/customers">Customers</a><a href="/riders">Riders</a><a href="/reports">Reports</a><a class="right" href="/logout">Logout</a></nav>
+{% else %}<nav><b>🔧 SpareGo</b><a href="/track">Track Order</a><a class="right" href="/login">Shop Login</a></nav>{% endif %}
+<main>{% for cat,m in get_flashed_messages(with_categories=true) %}<div class="flash {{cat}}">{{m}}</div>{% endfor %}{% block body %}{% endblock %}</main></body></html>
